@@ -5,9 +5,38 @@
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "src",
+    "paths": {
+      "$types/*": [
+        "types/*"
+      ],
+      "@routes": [
+        "routes/index.ts"
+      ],
+      "@routes/*": [
+        "routes/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@middleware/*": [
+        "middleware/*"
+      ]
+    }
   },
   "lib": [
     "es2015"
   ],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  },
 }

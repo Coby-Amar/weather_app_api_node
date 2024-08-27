@@ -1,32 +1,17 @@
 import { Router } from "express";
 
-import auth from "./auth";
-import weather from "./weather";
-import tokenMiddleware from "./middleware/token.middleware";
-import { body, matchedData, validationResult } from "express-validator";
-import { HttpService } from "../services/http.service";
+import authRoute from "./auth.route";
+import currentRoute from "./current.route";
+import userRoute from "./user.route";
+import forcastRoute from "./forcast.route";
+import tokenMiddleware from "../middleware/token.middleware";
 
 const router = Router()
 
-router.use('/auth', auth)
-router.post('/current', 
-    body('lat').notEmpty().isNumeric().escape(),
-    body('lon').notEmpty().isNumeric().escape(),
-    async (req, res) => {
-        if (!validationResult(req).isEmpty()) {
-            res.sendStatus(400)
-            return
-        }
-        const {lat, lon} = matchedData(req)
-        const result = await HttpService.get('../current.json', { 
-            params: {
-                q: `${lat},${lon}`
-            }
-        })
-        res.send(result.data)
-})
+router.use('/auth', authRoute)
+router.use('/current', currentRoute)
 router.use(tokenMiddleware)
-router.get('/ping', (_, res) => res.sendStatus(200))
-router.use('/weather', weather)
+router.use('/user', userRoute)
+router.use('/forcast', forcastRoute)
 
 export default router

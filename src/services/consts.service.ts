@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export class ConstanceService {
-    static MAX_COOKIE_AGE = 1000 * 60*60*24*7
+    static MAX_COOKIE_AGE = 1000*60*60*24*7
     static get IS_DEV() {
         return process.env.MODE === 'dev'
     }

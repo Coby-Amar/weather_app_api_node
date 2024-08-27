@@ -1,5 +1,6 @@
-declare interface User {
+export declare interface User {
     id: string
+    username: string
     name: string
     password: string
 }
