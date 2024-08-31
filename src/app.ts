@@ -18,6 +18,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/api', routes)
 
+app.get('*', (req, res) => {
+    res.sendFile('./whoops.html')
+
+})
+
 const port = process.env.PORT
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port ${port}`)
