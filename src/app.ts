@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use('/api', routes)
 
 app.get('*', (req, res) => {
-    res.sendFile('./whoops.html')
+    res.sendFile('whoops.html', {root: __dirname})
 
 })
 

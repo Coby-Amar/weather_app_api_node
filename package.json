@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "ts-node src/app.ts",
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && cp src/whoops.html dist/whoops.html",
     "dev": "nodemon src/app.ts",
     "lint": "eslint . --ext .ts"
   },
