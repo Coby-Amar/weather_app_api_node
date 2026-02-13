@@ -7,9 +7,9 @@ import { ConstanceService } from 'services/consts.service'
 import { morganMiddleware } from 'middleware/morgan.middleware'
 
 const app = express()
-if (ConstanceService.IS_DEV) {
+if (ConstanceService.ALLOWED_CORS) {
     app.use(cors({
-        origin: 'http://localhost:5173',
+        origin: ConstanceService.ALLOWED_CORS,
         credentials: true,
     }))
 }
@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use('/api', routes)
 
 app.get('*', (req, res) => {
-    res.sendFile('whoops.html', {root: __dirname})
+    res.sendFile('whoops.html', { root: __dirname })
 
 })
 

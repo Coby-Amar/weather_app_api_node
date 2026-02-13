@@ -2,7 +2,7 @@
   "name": "weather_app_api_node",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "node dist/app",
     "build": "tsc && tsc-alias && cp src/whoops.html dist/whoops.html",
     "dev": "nodemon src/app.ts",
     "lint": "eslint . --ext .ts"
