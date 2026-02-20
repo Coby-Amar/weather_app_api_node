@@ -1,4 +1,4 @@
-FROM node:24-slim AS dev 
+FROM node:latest AS dev 
 
 WORKDIR /app
 
@@ -9,25 +9,17 @@ RUN npm i
 CMD [ "npm", "run", "dev" ]
 
 # docker build ./ -t cobyamar/weather_app_api_node:1.0.0 && docker push cobyamar/weather_app_api_node:1.0.0
-FROM node:24-slim AS builder 
-
+FROM node:22-alpine AS builder
 WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm i
-
+COPY ./package*.json ./
+RUN npm ci
 COPY . .
-
 RUN npm run build
+RUN npm prune --omit=dev
 
-FROM node:24-slim AS prod 
-
+FROM node:22-alpine AS prod
 WORKDIR /app
-
-COPY --from=builder /app/dist /app
-
-EXPOSE 80
-CMD ["node", "app.js"]
+COPY --from=builder /app ./
+CMD ["node", "dist/app.js"]
 
 
