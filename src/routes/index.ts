@@ -10,8 +10,7 @@ const router = Router()
 
 router.use('/auth', authRoute)
 router.use('/current', currentRoute)
-router.use(tokenMiddleware)
-router.use('/user', userRoute)
-router.use('/forcast', forcastRoute)
+router.use('/user', tokenMiddleware, userRoute)
+router.use('/forcast', tokenMiddleware, forcastRoute)
 
 export default router
