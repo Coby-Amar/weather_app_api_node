@@ -1,0 +1,10 @@
+services:
+  backend:
+    image: cobyamar/weather_app_api_node:1.0.0
+    build:
+      context: .
+      target: prod
+    ports: 
+      - 80:80
+    env_file:
+      - ../weather_app_api_node/.env.production

@@ -1,0 +1,13 @@
+services:
+  backend:
+    container_name: weather_backend
+    build:
+      context: .
+      target: dev
+    ports: 
+      - 8000:8000
+    volumes:
+      - ./:/app:delegated
+      - /app/node_modules
+    env_file:
+      - ./.env.development
